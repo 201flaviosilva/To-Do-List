@@ -24,7 +24,7 @@ My goal with this project is to learn how to use multiple FE technologies togeth
 ## Used Technologies
 
 - [x]  Vite;
-- [ ]  ESLint;
+- [x]  ESLint;
 - [x]  Typescript;
 - [ ]  Redux;
 - [ ]  React Router Dom;

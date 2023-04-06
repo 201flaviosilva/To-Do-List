@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "mgmcdermott.vscode-language-babel",
+    "streetsidesoftware.code-spell-checker",
+    "kamikillerto.vscode-colorize",
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "yzhang.markdown-all-in-one",
+    "styled-components.vscode-styled-components"
+  ]
+}
