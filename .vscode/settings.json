@@ -1,7 +1,7 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
-    "source.organizeImports": true,
+    "source.organizeImports": false,
     "source.sortMembers": true,
     "source.fixAll.eslint": true
   },
@@ -53,5 +53,6 @@
   "files.autoSaveDelay": 180000,
   "files.insertFinalNewline": true,
   "git.autofetch": true,
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "cSpell.words": ["reduxjs"]
 }
