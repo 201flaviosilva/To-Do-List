@@ -26,8 +26,9 @@ My goal with this project is to learn how to use multiple FE technologies togeth
 - [x]  [![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 - [x]  [![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)](https://eslint.org/)
 - [x]  [![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+- [ ]  [![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)](https://styled-components.com/)
 - [ ]  [![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
-- [ ]  [![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/en/main)
+- [x]  [![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/en/main)
 - [ ]  [![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)[![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white)](https://testing-library.com/)
 - [ ]  [![Cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)](https://www.cypress.io/)
 - [ ]  [![Storybook](https://img.shields.io/badge/-Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)](https://storybook.js.org/)
@@ -40,24 +41,6 @@ My goal with this project is to learn how to use multiple FE technologies togeth
     - [ ]  Milestones;
     - [ ]  ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
-
-# React To Do List App
-
-## Description
-
-This is the React implementation of the To Do List
-
-## MVP
-
-- [x] Add an individual task;
-- [x] Search bar to filter the task with the current input;
-- [x] Filters (complete, incomplete);
-- [x] Save/load state to/from localstorage;
-- [x] Individually:
-  - [X] Remove
-  - [X] Mark as complete
-  - [x] Edit;
-- [x] Clear all tasks (with a confirmation modal);
 
 ## Make it run
 
@@ -88,9 +71,14 @@ npm start
 
 ## Available Commands
 
-| Command         | Description                                                                     |
-| --------------- | ------------------------------------------------------------------------------- |
-| `npm run clear` | Delete the `build` and `out` and `dist` folder                                  |
-| `npm i`         | Install project dependencies                                                    |
-| `npm start`     | Start project and open web server running project                               |
-| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
+| Command            | Description                                                                     |
+| ------------------ | ------------------------------------------------------------------------------- |
+| `npm run clear`    | Delete the `build` and `out` and `dist` folder                                  |
+| `npm i`            | Install project dependencies                                                    |
+| `npm start`        | Start project and open web server running project                               |
+| `npm run build`    | Builds code bundle with production settings (minification, uglification, etc..) |
+| `npm run preview`  | Start a local development server with Vite and preview the application          |
+| `npm run lint`     | Fix code styles and some problems                                               |
+| `npm run analyze`  | Builds the project and analyzes the size code bundle                            |
+| `npm run depcheck` | Prints the not used dependencies                                                |
+| `npm run bump`     | Updates the package version and creates a new tag on github                     |

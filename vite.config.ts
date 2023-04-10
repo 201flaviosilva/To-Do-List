@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react(), eslint()],
   base: "./",
   build: {
+    sourcemap: true,
     assetsInlineLimit: 0,
   },
   resolve: {
