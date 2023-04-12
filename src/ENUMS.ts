@@ -1,0 +1,5 @@
+export enum LOCAL_STORAGE {
+  USERS = "USERS",
+  CURRENT_USER = "CURRENT_USER",
+  TASKS = "TASKS",
+}
