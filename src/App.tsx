@@ -2,9 +2,9 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { store } from "./app/store";
-import Account from "./Pages/Account";
-import Home from "./Pages/Home";
-import NotFound from "./Pages/NotFound";
+import Account from "./pages/Account";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (

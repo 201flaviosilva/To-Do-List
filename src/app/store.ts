@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import usersReducer from "../actions/users";
-import counterReducer from "../Components/Counter/state";
+import counterReducer from "../components/Counter/state";
 
 export const store = configureStore({
   reducer: {
