@@ -2,10 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { LOCAL_STORAGE } from "../ENUMS";
 
-export type User = {
-  id: number | string;
+type UserProp = {
+  name?: string;
   userId: string;
   password: string;
+};
+
+export type User = UserProp & {
+  id: number | string;
 };
 
 interface UsersState {
@@ -22,6 +26,7 @@ const initialState: UsersState = {
     ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.USERS) as string)
     : DEFAULT_USERS,
 };
+localStorage.setItem(LOCAL_STORAGE.USERS, JSON.stringify(initialState.users));
 
 function generateUniqueId() {
   return Math.random()
@@ -33,10 +38,7 @@ const counterSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    createUser(
-      state,
-      action: PayloadAction<{ userId: string; password: string }>
-    ) {
+    createUser(state, action: PayloadAction<UserProp>) {
       if (!state.users.find((u) => u.userId === action.payload.userId)) {
         state.users.push({
           ...action.payload,
@@ -47,7 +49,7 @@ const counterSlice = createSlice({
       }
     },
 
-    login(state, action: PayloadAction<{ userId: string; password: string }>) {
+    login(state, action: PayloadAction<UserProp>) {
       const foundUser = state.users.find(
         (u) => u.userId === action.payload.userId
       );

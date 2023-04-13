@@ -13,6 +13,14 @@ module.exports = {
 			jsx: true
 		},
 	},
+	plugins: [
+		"react",
+		"@typescript-eslint",
+		"eslint-plugin-react",
+		"styled-components-a11y",
+		"jest",
+		"jest-extended",
+	],
 	extends: [
 		"eslint:recommended",
 		"plugin:import/recommended",
@@ -21,15 +29,9 @@ module.exports = {
 		"react-app",
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended",
+		"plugin:styled-components-a11y/recommended",
 		"plugin:jest/recommended",
 		"plugin:jest-extended/recommended",
-	],
-	plugins: [
-		"react",
-		"@typescript-eslint",
-		"eslint-plugin-react",
-		"jest",
-		"jest-extended",
 	],
 	rules: {
 		"react/jsx-uses-react": "error",
