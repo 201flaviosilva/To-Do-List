@@ -38,6 +38,8 @@ module.exports = {
 		"react/react-in-jsx-scope": "off",
 		"react/jsx-uses-vars": "error",
 		"react/prop-types": "off",
+		"jsx-a11y/label-has-associated-control": "off",
+		"jsx-a11y/label-has-for": "off",
 		"linebreak-style": ["warn", "unix"],
 		"quotes": ["warn", "double"],
 		"semi": ["warn", "always"],

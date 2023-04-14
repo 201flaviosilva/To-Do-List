@@ -4,18 +4,14 @@
 
 * {
   color: white;
-  background-color: #242424;
 }
 
-#root,
-.App {
+#root {
   width: 100vw;
   height: 100vh;
-}
-
-.App {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
+  overflow-y: auto;
+  background-color: #242424;
 }

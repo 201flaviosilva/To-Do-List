@@ -12,8 +12,10 @@
     "start": "vite --open",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "test": "react-scripts test --coverage",
+    "test:nowatch": "npm test -- --watchAll=false",
     "lint": "eslint ./src/ --fix",
-    "analyze": "npm run build && source-map-explorer 'dist/assets/*.js'",
+    "analyze": "npm run build && source-map-explorer 'dist/js/*.js' --html ./source-map-explorer/result.html && source-map-explorer 'dist/js/*.js' --json ./source-map-explorer/result.json",
     "depcheck": "depcheck",
     "bump": "npm run build && np --no-tests --any-branch --no-publish"
   },
@@ -26,7 +28,8 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
     "redux": "^4.2.1",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "sweetalert2": "^11.7.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.35",
