@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { LOCAL_STORAGE } from "../ENUMS";
+import { generateUniqueId } from "../utils";
 
 export type UserProp = {
   name?: string;
@@ -28,12 +29,11 @@ const initialState: UsersState = {
     : DEFAULT_USERS,
   status: null,
 };
-localStorage.setItem(LOCAL_STORAGE.USERS, JSON.stringify(initialState.users));
 
-function generateUniqueId() {
-  return Math.random()
-    .toString(36)
-    .replace(/[^a-z]+/g, "");
+// Setup local storage
+localStorage.setItem(LOCAL_STORAGE.USERS, JSON.stringify(initialState.users));
+if (!localStorage.getItem(LOCAL_STORAGE.CURRENT_USER)) {
+  localStorage.setItem(LOCAL_STORAGE.CURRENT_USER, JSON.stringify("G"));
 }
 
 const counterSlice = createSlice({
