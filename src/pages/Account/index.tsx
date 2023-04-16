@@ -1,5 +1,1 @@
-export default function Account() {
-	return (
-		<div>Account</div>
-	);
-}
+export { default } from "./Account";
