@@ -6,7 +6,7 @@
   "description": "",
   "author": "201flaviosilva",
   "license": "MIT",
-  "homepage": "https://github.com/201flaviosilva/To-Do-List#readme",
+  "homepage": ".",
   "scripts": {
     "clear": "rm -rf build && rm -rf out && rm -rf dist",
     "start": "vite --open",
@@ -20,7 +20,7 @@
     "bump": "npm run build && np --no-tests --any-branch --no-publish"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.3",
+    "@reduxjs/toolkit": "^1.9.4",
     "css-free-style": "^1.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

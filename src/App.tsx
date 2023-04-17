@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { store } from "./app/store";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -11,17 +11,17 @@ import NotFound from "./pages/NotFound";
 export default function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <Header />
         <Main>
           <Routes>
             <Route index path="/" element={<Home />} />
-            <Route path="account" element={<Account />} />
+            <Route path="/account" element={<Account />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Main>
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   );
 }
