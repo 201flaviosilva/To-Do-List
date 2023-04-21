@@ -6,7 +6,7 @@ My goal with this project is to learn how to use multiple FE technologies togeth
 
 ## MVP
 
-- [ ]  Login/sign up/guest mode system;
+- [x]  Login/sign up/guest mode system;
 - [ ]  Create a new task;
 - [ ]  Search the list;
 - [ ]  Remove:
@@ -34,12 +34,12 @@ My goal with this project is to learn how to use multiple FE technologies togeth
 - [ ]  [![Storybook](https://img.shields.io/badge/-Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)](https://storybook.js.org/)
 - [ ]  [![Electron](https://img.shields.io/badge/Electron-191970?style=for-the-badge&logo=Electron&logoColor=white)](https://www.electronjs.org/)
 - [x]  ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-    - [ ]  Issues;
-    - [ ]  Pull Requests;
-    - [ ]  Projects;
+    - [x]  Issues;
+    - [x]  Pull Requests;
+    - [x]  Projects;
     - [ ]  Wiki;
-    - [ ]  Milestones;
-    - [ ]  ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+    - [x]  Milestones;
+    - [x]  ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
 
 ## Make it run

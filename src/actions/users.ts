@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { LOCAL_STORAGE } from "../ENUMS";
+import { DEFAULT_USERS_IDS, LOCAL_STORAGE } from "../ENUMS";
 import { generateUniqueId } from "../utils";
 
 export type UserProp = {
@@ -10,33 +10,38 @@ export type UserProp = {
 };
 
 export type User = UserProp & {
-  id: number | string;
+  id: string;
 };
 
 interface UsersState {
   users: User[];
+  currentUser: string | number;
   status: string | null;
 }
 
 const DEFAULT_USERS = [
-  { id: "G", username: "Guest", password: "" },
-  { id: "A", username: "Admin", password: "123" },
+  { id: DEFAULT_USERS_IDS.GUEST, username: "Guest", password: "" },
+  { id: DEFAULT_USERS_IDS.ADMIN, username: "Admin", password: "123" },
 ];
 
 const initialState: UsersState = {
   users: localStorage.getItem(LOCAL_STORAGE.USERS)
     ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.USERS) as string)
     : DEFAULT_USERS,
+  currentUser: localStorage.getItem(LOCAL_STORAGE.CURRENT_USER)
+    ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string)
+    : DEFAULT_USERS_IDS.GUEST,
   status: null,
 };
 
 // Setup local storage
 localStorage.setItem(LOCAL_STORAGE.USERS, JSON.stringify(initialState.users));
-if (!localStorage.getItem(LOCAL_STORAGE.CURRENT_USER)) {
-  localStorage.setItem(LOCAL_STORAGE.CURRENT_USER, JSON.stringify("G"));
-}
+localStorage.setItem(
+  LOCAL_STORAGE.CURRENT_USER,
+  JSON.stringify(initialState.currentUser)
+);
 
-const counterSlice = createSlice({
+const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
@@ -64,6 +69,7 @@ const counterSlice = createSlice({
         foundUser.username === action.payload.username &&
         foundUser.password === action.payload.password
       ) {
+        state.currentUser = foundUser.id;
         localStorage.setItem(
           LOCAL_STORAGE.CURRENT_USER,
           JSON.stringify(foundUser.id)
@@ -75,11 +81,19 @@ const counterSlice = createSlice({
       state.status = "401"; // Unauthorized - User not found or incorrect password
     },
 
+    logOut(state) {
+      state.currentUser = DEFAULT_USERS_IDS.GUEST;
+      localStorage.setItem(
+        LOCAL_STORAGE.CURRENT_USER,
+        JSON.stringify(DEFAULT_USERS_IDS.GUEST)
+      );
+    },
+
     clearStatus(state) {
       state.status = null;
     },
   },
 });
 
-export const { createUser, login, clearStatus } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { createUser, login, clearStatus } = usersSlice.actions;
+export default usersSlice.reducer;

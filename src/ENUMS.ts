@@ -4,3 +4,8 @@ export enum LOCAL_STORAGE {
   CURRENT_USER = "CURRENT_USER",
   TASKS = "TASKS",
 }
+
+export enum DEFAULT_USERS_IDS {
+  ADMIN = "A",
+  GUEST = "G",
+}
