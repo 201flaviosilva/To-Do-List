@@ -4,10 +4,10 @@
 
 My goal with this project is to learn how to use multiple FE technologies together, while using it I develop a simple application like a to do list
 
-## MVP
+## MVP - https://github.com/201flaviosilva/To-Do-List/milestone/1
 
 - [x]  Login/sign up/guest mode system;
-- [ ]  Create a new task;
+- [x]  Create a new task;
 - [ ]  Search the list;
 - [ ]  Remove:
      - [ ] Individually;
