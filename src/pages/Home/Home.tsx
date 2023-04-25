@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { GoPlus } from "react-icons/go";
 import { useSelector } from "react-redux";
 import type { Task as TaskType } from "../../actions/tasks";
@@ -8,13 +8,13 @@ import Task from "../../components/Task";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
-	const tasks = useSelector(selectCurrentUserTasks);
 	const [title, setTitle] = useState("");
 
-	function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+	const onSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		dispatch(addNewTask({ title, isCompleted: false, isFavorite: false }));
-	}
+		setTitle("");
+	}, [dispatch, title]);
 
 	return (
 		<div>
@@ -26,12 +26,20 @@ export default function Home() {
 				<button type="submit"><GoPlus /></button>
 			</form>
 
-			<ul>
-				{tasks.length === 0 && <>
-					<p>No tasks were</p>
-				</>}
-				{tasks.map((task: TaskType) => <Task key={task.id} {...task} />)}
-			</ul>
+			<TasksList />
+
 		</div >
+	);
+}
+
+function TasksList() {
+	const tasks = useSelector(selectCurrentUserTasks);
+
+	if (!tasks.length) return <p>Empty tasks</p>;
+
+	return (
+		<ul>
+			{tasks.map((task: TaskType) => <Task key={task.id} {...task} />)}
+		</ul>
 	);
 }
