@@ -14,12 +14,12 @@ My goal with this project is to learn how to use multiple FE technologies togeth
      - [ ] All;
      - [ ] Completed;
      - [ ] Repeated;
-- [ ] Save in local Storage;
+- [x] Save in local Storage;
 - [ ] Favorites;
-- [ ] Individual changes:
-     - [ ] Mark as completed;
-     - [ ] Mark as favorite;
-     - [ ] Change the title/name of the task;
+- [x] Individual changes:
+     - [x] Mark as completed;
+     - [x] Mark as favorite;
+     - [x] Change the title of the task;
 
 ## Used Technologies
 

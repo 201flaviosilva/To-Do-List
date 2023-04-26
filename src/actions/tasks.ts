@@ -46,11 +46,26 @@ const tasksSlice = createSlice({
       localStorage.setItem(LOCAL_STORAGE.TASKS, JSON.stringify(state._tasks));
     },
 
-    toggleFavorite(state, action: PayloadAction<{ id: string }>) {
-      const task = state._tasks.find(({ id }) => id === action.payload.id);
+    changeIndividualProp(
+      state,
+      action: PayloadAction<{
+        id: string;
+        change: {
+          prop: keyof TaskProp;
+          value: string | boolean;
+        };
+      }>
+    ) {
+      const {
+        id: taskId,
+        change: { prop, value },
+      } = action.payload;
+      const task = state._tasks.find(({ id }) => id === taskId);
 
       if (task) {
-        task.isFavorite = !task?.isFavorite;
+        // eslint-disable-next-line no-unused-vars
+        (task as { [_ in keyof TaskProp]: string | boolean })[prop] = value; // Same as: task[prop] = value;
+
         localStorage.setItem(LOCAL_STORAGE.TASKS, JSON.stringify(state._tasks));
       }
     },
@@ -71,5 +86,6 @@ export const selectCurrentUserTasks = createSelector(
       : tasks.filter((task) => task.userID === currentUserID)
 );
 
-export const { addNewTask, clearStatus, toggleFavorite } = tasksSlice.actions;
+export const { addNewTask, clearStatus, changeIndividualProp } =
+  tasksSlice.actions;
 export default tasksSlice.reducer;
