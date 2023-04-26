@@ -5,6 +5,7 @@ import type { Task as TaskType } from "../../actions/tasks";
 import { addNewTask, selectCurrentUserTasks } from "../../actions/tasks";
 import { useAppDispatch } from "../../app/hooks";
 import Task from "../../components/Task";
+import { CreateTask, EmptyText, StyledList, Wrapper } from "./styled";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
@@ -21,29 +22,31 @@ export default function Home() {
 	}, [dispatch, title]);
 
 	return (
-		<div>
-			<form onSubmit={onSubmit}>
-				<input
+		<Wrapper>
+			<CreateTask.Form onSubmit={onSubmit}>
+				<CreateTask.Input
+					maxLength={50}
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 				/>
-				<button type="submit"><GoPlus /></button>
-			</form>
+				<CreateTask.Button type="submit"><GoPlus /></CreateTask.Button>
+			</CreateTask.Form>
 
 			<TasksList />
-
-		</div >
+		</Wrapper >
 	);
 }
 
 function TasksList() {
 	const tasks = useSelector(selectCurrentUserTasks);
 
-	if (!tasks.length) return <p>Empty tasks</p>;
+	if (!tasks.length) return <EmptyText>Empty tasks</EmptyText>;
 
 	return (
-		<ul>
-			{tasks.map((task: TaskType) => <Task key={task.id} {...task} />)}
-		</ul>
+		<StyledList>
+			<ul>
+				{tasks.map((task: TaskType) => <Task key={task.id} {...task} />)}
+			</ul>
+		</StyledList>
 	);
 }

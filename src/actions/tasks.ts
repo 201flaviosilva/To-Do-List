@@ -63,7 +63,8 @@ const tasksSlice = createSlice({
       const task = state._tasks.find(({ id }) => id === taskId);
 
       if (task) {
-        (task as { [key in keyof TaskProp]: string | boolean })[prop] = value; // Same as: task[prop] = value;
+        // eslint-disable-next-line no-unused-vars
+        (task as { [_ in keyof TaskProp]: string | boolean })[prop] = value; // Same as: task[prop] = value;
 
         localStorage.setItem(LOCAL_STORAGE.TASKS, JSON.stringify(state._tasks));
       }
