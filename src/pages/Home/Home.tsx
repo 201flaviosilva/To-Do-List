@@ -12,7 +12,11 @@ export default function Home() {
 
 	const onSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		dispatch(addNewTask({ title, isCompleted: false, isFavorite: false }));
+		dispatch(addNewTask({
+			title: title || "Untitled",
+			isCompleted: false,
+			isFavorite: false,
+		}));
 		setTitle("");
 	}, [dispatch, title]);
 

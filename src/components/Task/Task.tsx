@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { GoCheck, GoTrashcan, GoAlert, GoDash } from "react-icons/go";
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
-import type { Task as TaskType } from "../../actions/tasks";
-import { toggleFavorite } from "../../actions/tasks";
+import type { TaskProp, Task as TaskType } from "../../actions/tasks";
+import { changeIndividualProp } from "../../actions/tasks";
 import { useAppDispatch } from "../../app/hooks";
 import { Button, Wrapper } from "./styled";
 
@@ -12,19 +12,27 @@ export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
 	const [isHouver, setIsHouver] = useState(false);
 	const dispatch = useAppDispatch();
 
-	function onClick(id: string) {
-		dispatch(toggleFavorite({ id }));
+	function changeProp(id: string, prop: keyof TaskProp, value: string | boolean) {
+		dispatch(changeIndividualProp({
+			id,
+			change: { prop, value, }
+		}));
+	}
+
+	function onChangeTitleDoubleClick() {
+		const newTitle = prompt("New task title", title) || title;
+		if (newTitle !== title) changeProp(id, "title", newTitle);
 	}
 
 	return (
 		<Wrapper>
 			<Button
 				isActive={isFavorite}
-				onClick={() => onClick(id)}>
+				onClick={() => changeProp(id, "isFavorite", !isFavorite)}>
 				<FavoriteIcon isFavorite={isFavorite} />
 			</Button>
-			<span>{title}</span>
-			<Button>
+			<span onDoubleClick={onChangeTitleDoubleClick}>{title}</span>
+			<Button onClick={() => changeProp(id, "isCompleted", !isCompleted)}>
 				<CompletedIcon isCompleted={isCompleted} />
 			</Button>
 			<Button
