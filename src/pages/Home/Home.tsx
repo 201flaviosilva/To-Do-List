@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GoPlus } from "react-icons/go";
 import { useSelector } from "react-redux";
 import type { Task as TaskType } from "../../actions/tasks";
@@ -39,13 +39,22 @@ export default function Home() {
 
 function TasksList() {
 	const tasks = useSelector(selectCurrentUserTasks);
+	const [filteredTasks, setFilteredTasks] = useState(tasks);
 
-	if (!tasks.length) return <EmptyText>Empty tasks</EmptyText>;
+	useEffect(() => {
+		setFilteredTasks([...tasks].sort((a, b) => {
+			if (a.isFavorite && !b.isFavorite) return -1;
+			else if (!a.isFavorite && b.isFavorite) return 1;
+			else return 0;
+		}));
+	}, [tasks]);
+
+	if (!filteredTasks.length) return <EmptyText>Empty tasks</EmptyText>;
 
 	return (
 		<StyledList>
 			<ul>
-				{tasks.map((task: TaskType) => <Task key={task.id} {...task} />)}
+				{filteredTasks.map((task: TaskType) => <Task key={task.id} {...task} />)}
 			</ul>
 		</StyledList>
 	);
