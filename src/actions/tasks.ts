@@ -30,7 +30,10 @@ const initialState: UsersState = {
 };
 
 // Setup local storage
-localStorage.setItem(LOCAL_STORAGE.TASKS, JSON.stringify(initialState._tasks));
+updateTasksStorage(initialState._tasks);
+function updateTasksStorage(tasks: Task[]) {
+  localStorage.setItem(LOCAL_STORAGE.TASKS, JSON.stringify(tasks));
+}
 
 const tasksSlice = createSlice({
   name: "users",
@@ -68,12 +71,19 @@ const tasksSlice = createSlice({
         // eslint-disable-next-line no-unused-vars
         (task as { [_ in keyof TaskProp]: string | boolean })[prop] = value; // Same as: task[prop] = value;
 
-        localStorage.setItem(LOCAL_STORAGE.TASKS, JSON.stringify(state._tasks));
+        updateTasksStorage(state._tasks);
       }
     },
 
     changeSearchValue(state, action: PayloadAction<{ value: string }>) {
       state.searchValue = action.payload.value;
+    },
+
+    removeTask(state, action: PayloadAction<{ id: string }>) {
+      const { id: taskId } = action.payload;
+
+      state._tasks = state._tasks.filter(({ id }) => id !== taskId);
+      updateTasksStorage(state._tasks);
     },
 
     clearStatus(state) {
@@ -96,6 +106,7 @@ export const {
   addNewTask,
   changeIndividualProp,
   changeSearchValue,
+  removeTask,
   clearStatus,
 } = tasksSlice.actions;
 export default tasksSlice.reducer;
