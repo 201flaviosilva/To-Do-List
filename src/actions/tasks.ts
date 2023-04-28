@@ -17,6 +17,7 @@ export type Task = TaskProp & {
 interface UsersState {
   _tasks: Task[];
   status: string | null;
+  searchValue: string;
 }
 
 const initialState: UsersState = {
@@ -25,6 +26,7 @@ const initialState: UsersState = {
     ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.TASKS) as string)
     : [],
   status: null,
+  searchValue: "",
 };
 
 // Setup local storage
@@ -70,6 +72,10 @@ const tasksSlice = createSlice({
       }
     },
 
+    changeSearchValue(state, action: PayloadAction<{ value: string }>) {
+      state.searchValue = action.payload.value;
+    },
+
     clearStatus(state) {
       state.status = null;
     },
@@ -86,6 +92,10 @@ export const selectCurrentUserTasks = createSelector(
       : tasks.filter((task) => task.userID === currentUserID)
 );
 
-export const { addNewTask, clearStatus, changeIndividualProp } =
-  tasksSlice.actions;
+export const {
+  addNewTask,
+  changeIndividualProp,
+  changeSearchValue,
+  clearStatus,
+} = tasksSlice.actions;
 export default tasksSlice.reducer;
