@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT_USERS_IDS, LOCAL_STORAGE } from "../ENUMS";
 import { generateUniqueId } from "../utils";
@@ -15,7 +15,7 @@ export type User = UserProp & {
 
 interface UsersState {
   users: User[];
-  currentUser: string | number;
+  currentUserId: string | number;
   status: string | null;
 }
 
@@ -28,7 +28,7 @@ const initialState: UsersState = {
   users: localStorage.getItem(LOCAL_STORAGE.USERS)
     ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.USERS) as string)
     : DEFAULT_USERS,
-  currentUser: localStorage.getItem(LOCAL_STORAGE.CURRENT_USER)
+  currentUserId: localStorage.getItem(LOCAL_STORAGE.CURRENT_USER)
     ? JSON.parse(localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string)
     : DEFAULT_USERS_IDS.GUEST,
   status: null,
@@ -38,7 +38,7 @@ const initialState: UsersState = {
 localStorage.setItem(LOCAL_STORAGE.USERS, JSON.stringify(initialState.users));
 localStorage.setItem(
   LOCAL_STORAGE.CURRENT_USER,
-  JSON.stringify(initialState.currentUser)
+  JSON.stringify(initialState.currentUserId)
 );
 
 const usersSlice = createSlice({
@@ -69,7 +69,7 @@ const usersSlice = createSlice({
         foundUser.username === action.payload.username &&
         foundUser.password === action.payload.password
       ) {
-        state.currentUser = foundUser.id;
+        state.currentUserId = foundUser.id;
         localStorage.setItem(
           LOCAL_STORAGE.CURRENT_USER,
           JSON.stringify(foundUser.id)
@@ -82,7 +82,7 @@ const usersSlice = createSlice({
     },
 
     logOut(state) {
-      state.currentUser = DEFAULT_USERS_IDS.GUEST;
+      state.currentUserId = DEFAULT_USERS_IDS.GUEST;
       localStorage.setItem(
         LOCAL_STORAGE.CURRENT_USER,
         JSON.stringify(DEFAULT_USERS_IDS.GUEST)
@@ -95,5 +95,12 @@ const usersSlice = createSlice({
   },
 });
 
-export const { createUser, login, clearStatus } = usersSlice.actions;
+// Utils
+export const getCurrentUserData = createSelector(
+  (state: { users: { users: User[] } }) => state.users.users,
+  () => JSON.parse(localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string),
+  (users, currentUserID) => users.find((u) => u.id === currentUserID)
+);
+
+export const { createUser, login, logOut, clearStatus } = usersSlice.actions;
 export default usersSlice.reducer;

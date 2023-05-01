@@ -6,14 +6,14 @@ export const StyledHeader = styled.header`
   justify-content: space-between;
   padding: 8px;
   background-color: var(--lt-color-gray-900);
+`;
 
-  div {
-    flex: 1;
-    max-width: 75%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+export const SearchWrapper = styled.div`
+  flex: 1;
+  max-width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const inputIsActive = css`
@@ -33,4 +33,11 @@ export const Input = styled.input<InputProps>`
   font-size: 16px;
   padding: 4px 8px;
   transition: 0.5s;
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
