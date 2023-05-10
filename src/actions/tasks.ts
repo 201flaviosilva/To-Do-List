@@ -1,7 +1,8 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { DEFAULT_USERS_IDS, LOCAL_STORAGE } from "../ENUMS";
+import { DEFAULT_USERS_IDS, LOCAL_STORAGE } from "../types/enums";
 import { generateUniqueId } from "../utils";
+import { getTasksListByUserID } from "./utils";
 
 export type TaskProp = {
   title: string;
@@ -86,6 +87,19 @@ const tasksSlice = createSlice({
       updateTasksStorage(state._tasks);
     },
 
+    removeAllTask(state) {
+      const currentUserId = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string
+      );
+
+      const taskIdsList = getTasksListByUserID(state._tasks, currentUserId).map(
+        (t) => t.id
+      );
+
+      state._tasks = state._tasks.filter(({ id }) => !taskIdsList.includes(id));
+      updateTasksStorage(state._tasks);
+    },
+
     clearStatus(state) {
       state.status = null;
     },
@@ -96,10 +110,7 @@ const tasksSlice = createSlice({
 export const selectCurrentUserTasks = createSelector(
   (state: { tasks: { _tasks: Task[] } }) => state.tasks._tasks,
   () => JSON.parse(localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string),
-  (tasks, currentUserID) =>
-    currentUserID === DEFAULT_USERS_IDS.ADMIN
-      ? tasks
-      : tasks.filter((task) => task.userID === currentUserID)
+  getTasksListByUserID
 );
 
 export const {
@@ -107,6 +118,7 @@ export const {
   changeIndividualProp,
   changeSearchValue,
   removeTask,
+  removeAllTask,
   clearStatus,
 } = tasksSlice.actions;
 export default tasksSlice.reducer;

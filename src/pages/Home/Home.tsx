@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { GoPlus } from "react-icons/go";
-import { useSelector } from "react-redux";
-import type { Task as TaskType } from "../../actions/tasks";
-import { addNewTask, selectCurrentUserTasks } from "../../actions/tasks";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import Task from "../../components/Task";
-import { CreateTask, EmptyText, StyledList, Wrapper } from "./styled";
+import { addNewTask } from "../../actions/tasks";
+import { useAppDispatch } from "../../app/hooks";
+import ActionButtons from "./components/ActionButtons";
+import TasksList from "./components/TaskList";
+import { CreateTask, Wrapper } from "./styled";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
@@ -23,6 +22,8 @@ export default function Home() {
 
 	return (
 		<Wrapper>
+			<ActionButtons />
+
 			<CreateTask.Form onSubmit={onSubmit}>
 				<CreateTask.Input
 					placeholder="New Task"
@@ -38,31 +39,4 @@ export default function Home() {
 	);
 }
 
-function TasksList() {
-	const tasks = useSelector(selectCurrentUserTasks);
-	const searchValue: string = useAppSelector((state) => state.tasks.searchValue);
-	const [filteredTasks, setFilteredTasks] = useState(tasks);
 
-
-	useEffect(() => {
-		// Filter By Search
-		const filterByName = searchValue ? tasks.filter(({ title }) => title.toUpperCase().includes(searchValue.toUpperCase())) : tasks;
-
-		// Sort By Favorite
-		setFilteredTasks(filterByName.sort((a, b) => {
-			if (a.isFavorite && !b.isFavorite) return -1;
-			else if (!a.isFavorite && b.isFavorite) return 1;
-			else return 0;
-		}));
-	}, [tasks, searchValue]);
-
-	if (!filteredTasks.length) return <EmptyText>Empty tasks</EmptyText>;
-
-	return (
-		<StyledList>
-			<ul>
-				{filteredTasks.map((task: TaskType) => <Task key={task.id} {...task} />)}
-			</ul>
-		</StyledList>
-	);
-}

@@ -15,3 +15,15 @@ export enum DEFAULT_USERS_IDS {
   ADMIN = "A",
   GUEST = "G",
 }
+
+// Some of the color are from https://getbootstrap.com/docs/4.0/utilities/colors/
+export enum BaseColors {
+  primary = "",
+  secondary = "",
+  success = "#28a745",
+  danger = "#dc3545",
+  warning = "#ffc107",
+  info = "#17a2b8",
+  dark = "#111213",
+  light = "#f8f9fc",
+}

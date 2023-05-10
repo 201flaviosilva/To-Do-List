@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { User, logOut, getCurrentUserData } from "../../../actions/users";
 import { useAppDispatch } from "../../../app/hooks";
-import { PAGES, DEFAULT_USERS_IDS } from "../../../ENUMS";
+import { PAGES, DEFAULT_USERS_IDS } from "../../../types/enums";
 import { IconWrapper } from "../styled";
 
 export function UserHomePageIcon() {

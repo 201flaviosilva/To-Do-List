@@ -1,11 +1,81 @@
 import styled from "styled-components";
+import { BaseColors } from "../../types";
+import { BaseColorsNames } from "../../types/customTypes";
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 `;
+
+interface ActionButtonsOpenToggleProps {
+  isOpen: boolean;
+}
+interface ActionButtonsSectionProps {
+  color?: BaseColorsNames;
+}
+const TRANSACTION_TIME = "0.5s";
+export const ActionsButtonsStyles = {
+  Wrapper: styled.aside<ActionButtonsOpenToggleProps>`
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    max-width: 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: ${({ isOpen }) => (isOpen ? 4 : 0)}px;
+    padding: 4px;
+
+    border: 1px solid;
+    border-radius: 4px;
+
+    transition: gap ${TRANSACTION_TIME} ease-out;
+  `,
+
+  Toggle: styled.button`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `,
+
+  Accordion: styled.div<ActionButtonsOpenToggleProps & { height: number }>`
+    width: 100%;
+    max-height: ${({ isOpen, height }) => (isOpen ? height : "0")}px;
+    overflow: hidden;
+    transition: ${TRANSACTION_TIME} ease-out;
+  `,
+
+  Section: styled.section<ActionButtonsSectionProps>`
+    width: 100%;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 4px;
+    background-color: ${({ color }) => (color ? BaseColors[color] : "dark")};
+  `,
+
+  SectionTitle: styled.h3`
+    text-align: center;
+  `,
+
+  ButtonsGroup: styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  `,
+
+  Button: styled.button`
+    border: 1px solid;
+    border-radius: 4px;
+  `,
+};
 
 export const CreateTask = {
   Form: styled.form`

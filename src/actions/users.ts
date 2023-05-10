@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { DEFAULT_USERS_IDS, LOCAL_STORAGE } from "../ENUMS";
+import { DEFAULT_USERS_IDS, LOCAL_STORAGE } from "../types/enums";
 import { generateUniqueId } from "../utils";
 
 export type UserProp = {

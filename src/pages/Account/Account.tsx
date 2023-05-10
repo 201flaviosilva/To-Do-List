@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import type { UserProp } from "../../actions/users";
 import { createUser, login, clearStatus } from "../../actions/users";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { PAGES } from "../../ENUMS";
+import { PAGES } from "../../types/enums";
 import Input from "./Components/Input";
 import { HTTPCodesMessage } from "./HTTPCodesMessage";
 import { Wrapper, Form, FormsContainer } from "./styled";
