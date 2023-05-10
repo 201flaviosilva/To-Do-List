@@ -1,8 +1,8 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { DEFAULT_USERS_IDS, LOCAL_STORAGE } from "../types/enums";
+import { LOCAL_STORAGE } from "../types";
 import { generateUniqueId } from "../utils";
-import { getTasksListByUserID } from "./utils";
+import { getCurrentUserLS, getTasksListByUserID } from "./utils";
 
 export type TaskProp = {
   title: string;
@@ -43,9 +43,7 @@ const tasksSlice = createSlice({
     addNewTask(state, action: PayloadAction<TaskProp>) {
       state._tasks.push({
         id: generateUniqueId(),
-        userID: JSON.parse(
-          localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string
-        ),
+        userID: getCurrentUserLS(),
         ...action.payload,
       });
 
@@ -87,14 +85,20 @@ const tasksSlice = createSlice({
       updateTasksStorage(state._tasks);
     },
 
-    removeAllTask(state) {
-      const currentUserId = JSON.parse(
-        localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string
-      );
+    removeCompletedTask(state) {
+      const currentUserId = getCurrentUserLS();
 
-      const taskIdsList = getTasksListByUserID(state._tasks, currentUserId).map(
-        (t) => t.id
+      state._tasks = state._tasks.filter(
+        ({ userID, isCompleted }) => !isCompleted && userID === currentUserId
       );
+      updateTasksStorage(state._tasks);
+    },
+
+    removeAllTask(state) {
+      const taskIdsList = getTasksListByUserID(
+        state._tasks,
+        getCurrentUserLS()
+      ).map(({ id }) => id);
 
       state._tasks = state._tasks.filter(({ id }) => !taskIdsList.includes(id));
       updateTasksStorage(state._tasks);
@@ -109,7 +113,7 @@ const tasksSlice = createSlice({
 // Utils
 export const selectCurrentUserTasks = createSelector(
   (state: { tasks: { _tasks: Task[] } }) => state.tasks._tasks,
-  () => JSON.parse(localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string),
+  () => getCurrentUserLS(),
   getTasksListByUserID
 );
 
@@ -118,6 +122,7 @@ export const {
   changeIndividualProp,
   changeSearchValue,
   removeTask,
+  removeCompletedTask,
   removeAllTask,
   clearStatus,
 } = tasksSlice.actions;
