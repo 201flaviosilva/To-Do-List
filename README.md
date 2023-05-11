@@ -8,14 +8,14 @@ My goal with this project is to learn how to use multiple FE technologies togeth
 
 - [x]  Login/sign up/guest mode system;
 - [x]  Create a new task;
-- [ ]  Search the list;
+- [x]  Search the list;
 - [ ]  Remove:
-     - [ ] Individually;
+     - [x] Individually;
      - [ ] All;
      - [ ] Completed;
      - [ ] Repeated;
 - [x] Save in local Storage;
-- [ ] Favorites;
+- [x] Favorites;
 - [x] Individual changes:
      - [x] Mark as completed;
      - [x] Mark as favorite;

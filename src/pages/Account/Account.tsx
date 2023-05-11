@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import type { UserProp } from "../../actions/users";
 import { createUser, login, clearStatus } from "../../actions/users";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { PAGES } from "../../types/enums";
 import Input from "./Components/Input";
 import { HTTPCodesMessage } from "./HTTPCodesMessage";
 import { Wrapper, Form, FormsContainer } from "./styled";
 
 export default function Account() {
+	const navigate = useNavigate();
 	const [state, setState] = useState({ name: "", username: "", password: "" } as UserProp);
 
 	const status: string | null = useAppSelector((state) => state.users.status);
@@ -20,11 +23,13 @@ export default function Account() {
 				icon: output?.type,
 				title: output?.title,
 				text: output?.message,
+			}).then(() => {
+				if (status === "200") navigate(PAGES.HOME);
 			});
 		}
 
 		return () => { dispatch(clearStatus()); };
-	}, [dispatch, status]);
+	}, [dispatch, navigate, status]);
 
 	const onSubmitLogin = useCallback((event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();

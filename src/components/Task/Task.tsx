@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GoCheck, GoTrashcan, GoAlert, GoDash } from "react-icons/go";
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 import type { TaskProp, Task as TaskType } from "../../actions/tasks";
-import { changeIndividualProp } from "../../actions/tasks";
+import { changeIndividualProp, removeTask } from "../../actions/tasks";
 import { useAppDispatch } from "../../app/hooks";
 import { Button, Div, Wrapper } from "./styled";
 
@@ -19,9 +19,13 @@ export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
 		}));
 	}
 
-	function onChangeTitleDoubleClick() {
+	function handleChangeTitleDoubleClick() {
 		const newTitle = prompt("New task title", title) || title;
 		if (newTitle !== title) changeProp(id, "title", newTitle);
+	}
+
+	function handleDeleteClick() {
+		dispatch(removeTask({ id }));
 	}
 
 	return (
@@ -35,7 +39,7 @@ export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
 				<span
 					className={isCompleted ? "completed" : ""}
 					title="Double click to change task title"
-					onDoubleClick={onChangeTitleDoubleClick}>{title}</span>
+					onDoubleClick={handleChangeTitleDoubleClick}>{title}</span>
 			</Div>
 
 			<Div>
@@ -45,6 +49,7 @@ export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
 				<Button
 					title="Delete task"
 					isActive={isHouver}
+					onClick={handleDeleteClick}
 					onMouseEnter={() => setIsHouver(true)}
 					onMouseLeave={() => setIsHouver(false)}
 				><DeleteIcon isHouver={isHouver} /></Button>

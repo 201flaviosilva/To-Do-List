@@ -1,7 +1,8 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { DEFAULT_USERS_IDS, LOCAL_STORAGE } from "../ENUMS";
-import { generateUniqueId } from "../utils";
+import { LOCAL_STORAGE } from "../types";
+import { generateUniqueId, removeDuplicates } from "../utils";
+import { getCurrentUserLS, getTasksListByUserID } from "./utils";
 
 export type TaskProp = {
   title: string;
@@ -30,7 +31,10 @@ const initialState: UsersState = {
 };
 
 // Setup local storage
-localStorage.setItem(LOCAL_STORAGE.TASKS, JSON.stringify(initialState._tasks));
+updateTasksStorage(initialState._tasks);
+function updateTasksStorage(tasks: Task[]) {
+  localStorage.setItem(LOCAL_STORAGE.TASKS, JSON.stringify(tasks));
+}
 
 const tasksSlice = createSlice({
   name: "users",
@@ -39,9 +43,7 @@ const tasksSlice = createSlice({
     addNewTask(state, action: PayloadAction<TaskProp>) {
       state._tasks.push({
         id: generateUniqueId(),
-        userID: JSON.parse(
-          localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string
-        ),
+        userID: getCurrentUserLS(),
         ...action.payload,
       });
 
@@ -68,12 +70,49 @@ const tasksSlice = createSlice({
         // eslint-disable-next-line no-unused-vars
         (task as { [_ in keyof TaskProp]: string | boolean })[prop] = value; // Same as: task[prop] = value;
 
-        localStorage.setItem(LOCAL_STORAGE.TASKS, JSON.stringify(state._tasks));
+        updateTasksStorage(state._tasks);
       }
     },
 
     changeSearchValue(state, action: PayloadAction<{ value: string }>) {
       state.searchValue = action.payload.value;
+    },
+
+    removeTask(state, action: PayloadAction<{ id: string }>) {
+      const { id: taskId } = action.payload;
+
+      state._tasks = state._tasks.filter(({ id }) => id !== taskId);
+      updateTasksStorage(state._tasks);
+    },
+
+    removeDuplicatedTasks(state) {
+      const currentUserId = getCurrentUserLS();
+
+      const userTasks = state._tasks.filter(
+        ({ userID }) => userID === currentUserId
+      );
+
+      state._tasks = removeDuplicates(userTasks, "title");
+      updateTasksStorage(state._tasks);
+    },
+
+    removeCompletedTasks(state) {
+      const currentUserId = getCurrentUserLS();
+
+      state._tasks = state._tasks.filter(
+        ({ userID, isCompleted }) => !isCompleted && userID === currentUserId
+      );
+      updateTasksStorage(state._tasks);
+    },
+
+    removeAllTasks(state) {
+      const taskIdsList = getTasksListByUserID(
+        state._tasks,
+        getCurrentUserLS()
+      ).map(({ id }) => id);
+
+      state._tasks = state._tasks.filter(({ id }) => !taskIdsList.includes(id));
+      updateTasksStorage(state._tasks);
     },
 
     clearStatus(state) {
@@ -85,17 +124,18 @@ const tasksSlice = createSlice({
 // Utils
 export const selectCurrentUserTasks = createSelector(
   (state: { tasks: { _tasks: Task[] } }) => state.tasks._tasks,
-  () => JSON.parse(localStorage.getItem(LOCAL_STORAGE.CURRENT_USER) as string),
-  (tasks, currentUserID) =>
-    currentUserID === DEFAULT_USERS_IDS.ADMIN
-      ? tasks
-      : tasks.filter((task) => task.userID === currentUserID)
+  () => getCurrentUserLS(),
+  getTasksListByUserID
 );
 
 export const {
   addNewTask,
   changeIndividualProp,
   changeSearchValue,
+  removeTask,
+  removeDuplicatedTasks,
+  removeCompletedTasks,
+  removeAllTasks,
   clearStatus,
 } = tasksSlice.actions;
 export default tasksSlice.reducer;

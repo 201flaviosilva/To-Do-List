@@ -4,10 +4,10 @@ import { store } from "./app/store";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import { PAGES } from "./ENUMS";
 import Account from "./pages/Account";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import { PAGES } from "./types/enums";
 
 export default function App() {
   return (
