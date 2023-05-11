@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { GiNuclearBomb } from "react-icons/gi";
 import { GoChevronDown, GoChevronUp, GoChecklist } from "react-icons/go";
 import { HiDocumentDuplicate } from "react-icons/hi";
-import { removeAllTask, removeCompletedTask } from "../../../actions/tasks";
+import { removeAllTasks, removeCompletedTasks, removeDuplicatedTasks } from "../../../actions/tasks";
 import { useAppDispatch } from "../../../app/hooks";
 import { ActionsButtonsStyles as Styles } from "../styled";
 
@@ -43,19 +43,23 @@ export default function ActionButtons() {
 function SectionDelete() {
 	const dispatch = useAppDispatch();
 
+	function handleClickDuplicated() {
+		dispatch(removeDuplicatedTasks());
+	}
+
 	function handleClickCompleted() {
-		dispatch(removeCompletedTask());
+		dispatch(removeCompletedTasks());
 	}
 
 	function handleClickRemoveAll() {
-		dispatch(removeAllTask());
+		dispatch(removeAllTasks());
 	}
 
 	return (
 		<Styles.Section color="danger">
 			<Styles.SectionTitle>Delete</Styles.SectionTitle>
 			<Styles.ButtonsGroup>
-				<Styles.Button title="Remove All Repeated Tasks"><HiDocumentDuplicate size={ICON_SIZE} /></Styles.Button>
+				<Styles.Button title="Remove All Repeated Tasks" onClick={handleClickDuplicated}><HiDocumentDuplicate size={ICON_SIZE} /></Styles.Button>
 				<Styles.Button title="Remove All Completed Tasks" onClick={handleClickCompleted}><GoChecklist size={ICON_SIZE} /></Styles.Button>
 				<Styles.Button title="Remove All Tasks" onClick={handleClickRemoveAll}><GiNuclearBomb size={ICON_SIZE} /></Styles.Button>
 			</Styles.ButtonsGroup>

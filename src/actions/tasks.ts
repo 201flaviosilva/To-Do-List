@@ -1,7 +1,7 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { LOCAL_STORAGE } from "../types";
-import { generateUniqueId } from "../utils";
+import { generateUniqueId, removeDuplicates } from "../utils";
 import { getCurrentUserLS, getTasksListByUserID } from "./utils";
 
 export type TaskProp = {
@@ -85,7 +85,18 @@ const tasksSlice = createSlice({
       updateTasksStorage(state._tasks);
     },
 
-    removeCompletedTask(state) {
+    removeDuplicatedTasks(state) {
+      const currentUserId = getCurrentUserLS();
+
+      const userTasks = state._tasks.filter(
+        ({ userID }) => userID === currentUserId
+      );
+
+      state._tasks = removeDuplicates(userTasks, "title");
+      updateTasksStorage(state._tasks);
+    },
+
+    removeCompletedTasks(state) {
       const currentUserId = getCurrentUserLS();
 
       state._tasks = state._tasks.filter(
@@ -94,7 +105,7 @@ const tasksSlice = createSlice({
       updateTasksStorage(state._tasks);
     },
 
-    removeAllTask(state) {
+    removeAllTasks(state) {
       const taskIdsList = getTasksListByUserID(
         state._tasks,
         getCurrentUserLS()
@@ -122,8 +133,9 @@ export const {
   changeIndividualProp,
   changeSearchValue,
   removeTask,
-  removeCompletedTask,
-  removeAllTask,
+  removeDuplicatedTasks,
+  removeCompletedTasks,
+  removeAllTasks,
   clearStatus,
 } = tasksSlice.actions;
 export default tasksSlice.reducer;
