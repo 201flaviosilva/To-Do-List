@@ -3,7 +3,6 @@ import { BaseColors } from "../../types";
 import { BaseColorsNames } from "../../types/customTypes";
 
 export const Wrapper = styled.div`
-  position: relative;
   max-height: 100%;
   display: flex;
   flex-direction: column;
@@ -20,7 +19,7 @@ interface ActionButtonsSectionProps {
 const TRANSACTION_TIME = "0.5s";
 export const ActionsButtonsStyles = {
   Wrapper: styled.aside<ActionButtonsOpenToggleProps>`
-    position: absolute;
+    position: absolute; // Relative to the StyledMain component
     top: 0;
     left: 0;
 
