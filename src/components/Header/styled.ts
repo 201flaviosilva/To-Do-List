@@ -6,6 +6,14 @@ export const StyledHeader = styled.header`
   justify-content: space-between;
   padding: 8px;
   background-color: var(--lt-color-gray-900);
+
+  @media only screen and (max-width: 768px) {
+    & {
+      padding: 4px 0;
+      width: 100%;
+      flex-direction: column;
+    }
+  }
 `;
 
 export const SearchWrapper = styled.div`
