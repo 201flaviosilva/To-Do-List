@@ -29,6 +29,12 @@ export const Wrapper = styled.li`
       color: white;
     }
   }
+
+  @media only screen and (max-width: 425px) {
+    & {
+      padding: 2px 4px;
+    }
+  }
 `;
 
 interface DivProps {

@@ -4,6 +4,7 @@ import { BaseColorsNames } from "../../types/customTypes";
 
 export const Wrapper = styled.div`
   position: relative;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +37,18 @@ export const ActionsButtonsStyles = {
     border: 1px solid;
     border-radius: 4px;
 
+    background-color: #242424;
     transition: gap ${TRANSACTION_TIME} ease-out;
+    z-index: 1;
+
+    @media only screen and (max-width: 1024px) {
+      & {
+        top: auto;
+        bottom: 0;
+        padding: 0;
+        max-width: 64px;
+      }
+    }
   `,
 
   Toggle: styled.button`
@@ -69,6 +81,12 @@ export const ActionsButtonsStyles = {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 4px;
+
+    @media only screen and (max-width: 1024px) {
+      & {
+        grid-template-columns: 1fr;
+      }
+    }
   `,
 
   Button: styled.button`
@@ -83,6 +101,18 @@ export const CreateTask = {
     width: 50%;
     align-items: center;
     gap: 8px;
+
+    @media only screen and (max-width: 768px) {
+      & {
+        width: 75%;
+      }
+    }
+
+    @media only screen and (max-width: 425px) {
+      & {
+        width: 90%;
+      }
+    }
   `,
 
   Input: styled.input`
@@ -137,9 +167,11 @@ export const StyledList = styled.div`
     }
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 425px) {
     & {
-      width: 90%;
+      width: 100%;
+      padding: 4px 8px;
+      margin-bottom: 32px;
     }
   }
 

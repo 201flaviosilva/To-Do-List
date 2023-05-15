@@ -16,6 +16,7 @@ export enum DEFAULT_USERS_IDS {
   GUEST = "G",
 }
 
+// Styles // TODO: Update to Theme Styles
 // Some of the color are from https://getbootstrap.com/docs/4.0/utilities/colors/
 export enum BaseColors {
   primary = "",
