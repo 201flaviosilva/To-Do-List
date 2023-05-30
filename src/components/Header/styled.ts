@@ -1,11 +1,12 @@
 import styled, { css } from "styled-components";
+import { BaseColors } from "../../types";
 
 export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px;
-  background-color: var(--lt-color-gray-900);
+  background-color: ${BaseColors.gray900};
 
   @media only screen and (max-width: 768px) {
     & {
