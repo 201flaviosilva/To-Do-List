@@ -71,7 +71,7 @@ export default function Account() {
 				</Form>
 
 				<Form onSubmit={onSubmitSingUp}>
-					<h3>Sing Up</h3>
+					<h3>Sign Up</h3>
 
 					<Input
 						label="User Name"

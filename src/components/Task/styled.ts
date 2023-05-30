@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BaseColors } from "../../types";
 
 export const Wrapper = styled.li`
   width: 100%;
@@ -13,16 +14,16 @@ export const Wrapper = styled.li`
   transition: 0.5s;
 
   &:nth-child(odd) {
-    background-color: var(--lt-color-gray-800);
+    background-color: ${BaseColors.gray800};
   }
 
   &:nth-child(even) {
-    background-color: var(--lt-color-gray-700);
+    background-color: ${BaseColors.gray700};
   }
 
   &:hover {
     transform: scale(1.025);
-    background-color: var(--lt-color-gray-900);
+    background-color: ${BaseColors.gray900};
     border: 1px solid white;
 
     * {

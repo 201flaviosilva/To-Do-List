@@ -27,4 +27,7 @@ export enum BaseColors {
   info = "#17a2b8",
   dark = "#111213",
   light = "#f8f9fc",
+  gray900 = "#111213",
+  gray800 = "#1d1e20",
+  gray700 = "#2f3237",
 }
