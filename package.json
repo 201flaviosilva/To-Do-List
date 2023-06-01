@@ -17,9 +17,9 @@
     "lint": "eslint ./src/ --fix",
     "analyze": "npm run build && source-map-explorer 'dist/js/*.js' --html ./source-map-explorer/result.html && source-map-explorer 'dist/js/*.js' --json ./source-map-explorer/result.json",
     "depcheck": "depcheck",
-    "bump": "npm run build && np --no-tests --any-branch --no-publish",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "bump": "npm run build && np --no-tests --any-branch --no-publish"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",

@@ -58,14 +58,14 @@ export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
 	);
 }
 
-function CompletedIcon({ isCompleted }: { isCompleted: boolean }) {
+export function CompletedIcon({ isCompleted }: { isCompleted: boolean }) {
 	return isCompleted ? <GoCheck size={ICON_SIZE} /> : <GoDash size={ICON_SIZE} />;
 }
 
-function FavoriteIcon({ isFavorite }: { isFavorite: boolean }) {
+export function FavoriteIcon({ isFavorite }: { isFavorite: boolean }) {
 	return isFavorite ? <MdFavorite size={ICON_SIZE} /> : <MdOutlineFavoriteBorder size={ICON_SIZE} />;
 }
 
-function DeleteIcon({ isHouver }: { isHouver: boolean }) {
+export function DeleteIcon({ isHouver }: { isHouver: boolean }) {
 	return isHouver ? <GoAlert size={ICON_SIZE} /> : <GoTrashcan size={ICON_SIZE} />;
 }
