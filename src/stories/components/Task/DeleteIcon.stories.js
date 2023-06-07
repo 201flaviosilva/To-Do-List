@@ -1,4 +1,4 @@
-import { DeleteIcon } from "../../../components/Task/Task";
+import { DeleteIcon } from "../../../components/Task/Icons";
 
 const meta = {
 	title: "components/Task/Delete Icon",

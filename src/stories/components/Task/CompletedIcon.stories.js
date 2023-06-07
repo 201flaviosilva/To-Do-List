@@ -1,4 +1,4 @@
-import { CompletedIcon } from "../../../components/Task/Task";
+import { CompletedIcon } from "../../../components/Task/Icons";
 
 const meta = {
 	title: "components/Task/Completed Icon",

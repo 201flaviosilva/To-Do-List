@@ -1,4 +1,4 @@
-import { FavoriteIcon } from "../../../components/Task/Task";
+import { FavoriteIcon } from "../../../components/Task/Icons";
 
 const meta = {
 	title: "components/Task/Favorite Icon",
