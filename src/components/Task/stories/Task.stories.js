@@ -1,7 +1,7 @@
-import Task from "../../../components/Task";
+import Task from "../Task";
 
 const meta = {
-	title: "components/Task/Task",
+	title: "Components / Task / Task",
 	component: Task,
 	tags: ["autodocs"],
 	argTypes: {

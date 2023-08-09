@@ -54,5 +54,5 @@
   "files.insertFinalNewline": true,
   "git.autofetch": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "cSpell.words": ["reduxjs"]
+  "cSpell.words": ["reduxjs", "storysource"]
 }

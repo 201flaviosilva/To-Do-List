@@ -1,7 +1,7 @@
-import { FavoriteIcon } from "../../../components/Task/Icons";
+import { FavoriteIcon } from "../Icons";
 
 const meta = {
-	title: "components/Task/Favorite Icon",
+	title: "Components / Task / Favorite Icon",
 	component: FavoriteIcon,
 	tags: ["autodocs"],
 	argTypes: {

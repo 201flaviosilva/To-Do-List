@@ -1,7 +1,7 @@
-import { Button } from "../../../../components/Task/styled";
+import { Button } from "../styled";
 
 const meta = {
-	title: "components/Task/Styled/Button",
+	title: "Components / Task / Styled/Button",
 	component: Button,
 	tags: ["autodocs"],
 	args: {

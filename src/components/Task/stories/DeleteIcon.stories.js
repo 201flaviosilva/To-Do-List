@@ -1,7 +1,7 @@
-import { DeleteIcon } from "../../../components/Task/Icons";
+import { DeleteIcon } from "../Icons";
 
 const meta = {
-	title: "components/Task/Delete Icon",
+	title: "Components / Task / Delete Icon",
 	component: DeleteIcon,
 	tags: ["autodocs"],
 	argTypes: {
@@ -11,7 +11,7 @@ const meta = {
 
 export default meta;
 
-export const NotHouver = {
+export const Normal = {
 	args: { isHouver: false, },
 };
 
