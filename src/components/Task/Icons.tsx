@@ -1,4 +1,4 @@
-import { GoCheck, GoTrashcan, GoAlert, GoDash } from "react-icons/go";
+import { GoCheck, GoTrash, GoAlert, GoDash } from "react-icons/go";
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 
 const ICON_SIZE = 18;
@@ -12,5 +12,5 @@ export function FavoriteIcon({ isFavorite }: { isFavorite: boolean }) {
 }
 
 export function DeleteIcon({ isHouver }: { isHouver: boolean }) {
-	return isHouver ? <GoAlert size={ICON_SIZE} /> : <GoTrashcan size={ICON_SIZE} />;
+	return isHouver ? <GoAlert size={ICON_SIZE} /> : <GoTrash size={ICON_SIZE} />;
 }

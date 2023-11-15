@@ -43,5 +43,3 @@ export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
 		</Wrapper >
 	);
 }
-
-
