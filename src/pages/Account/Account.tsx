@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import type { UserProp } from "../../actions/users";
-import { createUser, login, clearStatus } from "../../actions/users";
+import { clearStatus, createUser, login } from "../../actions/users";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { PAGES } from "../../types/enums";
-import Input from "./Components/Input";
+import { Input } from "./Components";
 import { HTTPCodesMessage } from "./HTTPCodesMessage";
-import { Wrapper, Form, FormsContainer } from "./styled";
+import { Form, FormsContainer, Wrapper } from "./styled";
 
 export default function Account() {
 	const navigate = useNavigate();

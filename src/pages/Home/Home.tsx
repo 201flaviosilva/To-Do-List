@@ -3,7 +3,7 @@ import { GoPlus } from "react-icons/go";
 import { addNewTask } from "../../actions/tasks";
 import { useAppDispatch } from "../../app/hooks";
 import ActionButtons from "./components/ActionButtons";
-import TasksList from "./components/TaskList";
+import TasksList from "./components/TasksList";
 import { CreateTask, Wrapper } from "./styled";
 
 export default function Home() {

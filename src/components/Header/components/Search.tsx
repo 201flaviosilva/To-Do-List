@@ -1,10 +1,10 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { GoSearch } from "react-icons/go";
 import { changeSearchValue } from "../../../actions/tasks";
 import { useAppDispatch } from "../../../app/hooks";
 import { Input, SearchWrapper } from "../styled";
 
-export function Search() {
+export default function Search() {
 	const dispatch = useAppDispatch();
 
 	const inputRef = useRef<HTMLInputElement>(null);

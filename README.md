@@ -9,11 +9,11 @@ My goal with this project is to learn how to use multiple FE technologies togeth
 - [x]  Login/sign up/guest mode system;
 - [x]  Create a new task;
 - [x]  Search the list;
-- [ ]  Remove:
+- [x]  Remove:
      - [x] Individually;
-     - [ ] All;
-     - [ ] Completed;
-     - [ ] Repeated;
+     - [X] All;
+     - [x] Completed;
+     - [x] Repeated;
 - [x] Save in local Storage;
 - [x] Favorites;
 - [x] Individual changes:
@@ -67,6 +67,14 @@ To make the app running and open a browser window just run:
 
 ```sh
 npm start
+```
+
+### Start the Storybook
+
+Check the components documentation:
+
+```sh
+npm run storybook
 ```
 
 ## Available Commands

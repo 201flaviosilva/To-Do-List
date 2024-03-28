@@ -7,7 +7,7 @@ import { useAppDispatch } from "../../../app/hooks";
 import { PAGES, DEFAULT_USERS_IDS } from "../../../types/enums";
 import { IconWrapper } from "../styled";
 
-export function UserHomePageIcon() {
+export default function UserHomePageIcon() {
 	const currentUser: User | undefined = useSelector(getCurrentUserData);
 	const [isHouver, setIsHouver] = useState(false);
 	const dispatch = useAppDispatch();
