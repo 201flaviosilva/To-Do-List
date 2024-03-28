@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import type { TaskProp } from "../../actions/tasks";
+import type { SimpleTask } from "../../actions/tasks";
 import { changeIndividualProp, removeTask } from "../../actions/tasks";
 import { useAppDispatch } from "../../app/hooks";
 
@@ -17,7 +17,7 @@ export function useChangeProp() {
    * @param {string|boolean} value - The new value of the property.
    */
   const changeProp = useCallback(
-    (id: string, prop: keyof TaskProp, value: string | boolean) => {
+    (id: string, prop: keyof SimpleTask, value: string | boolean) => {
       dispatch(
         changeIndividualProp({
           id,

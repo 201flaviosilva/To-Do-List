@@ -1,9 +1,8 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.organizeImports": false,
-    "source.sortMembers": true,
-    "source.fixAll.eslint": true
+    "source.fixAll": "explicit",
+    "source.sortMembers": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
   "eslint.validate": [
     "javascript",

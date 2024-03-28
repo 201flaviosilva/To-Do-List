@@ -1,10 +1,10 @@
 import { useState } from "react";
-import type { Task as TaskType } from "../../actions/tasks";
+import type { TaskProps } from "./types";
 import { useChangeProp, useDeleteTask } from "./hooks";
 import { CompletedIcon, DeleteIcon, FavoriteIcon } from "./Icons";
 import { Button, Div, Wrapper } from "./styled";
 
-export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
+export default function Task({ id, title, isFavorite, isCompleted }: TaskProps) {
 	const [isHouver, setIsHouver] = useState(false);
 	const { changeProp } = useChangeProp();
 	const { deleteTask } = useDeleteTask();
@@ -43,3 +43,5 @@ export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
 		</Wrapper >
 	);
 }
+
+Task.displayName = "Task";
