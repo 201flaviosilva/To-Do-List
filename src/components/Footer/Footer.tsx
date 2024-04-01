@@ -1,4 +1,4 @@
-import { GoMarkGithub } from "react-icons/go";
+import { AiFillGithub } from "react-icons/ai";
 import { StyledFooter } from "./styled";
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
 				target="_blank"
 				rel="noreferrer"
 			>
-				<GoMarkGithub size={32} />
+				<AiFillGithub size={32} />
 			</a>
 		</StyledFooter>
 	);

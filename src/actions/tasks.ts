@@ -4,13 +4,13 @@ import { LOCAL_STORAGE } from "../types";
 import { generateUniqueId, removeDuplicates } from "../utils";
 import { getCurrentUserLS, getTasksListByUserID } from "./utils";
 
-export type TaskProp = {
+export type SimpleTask = {
   title: string;
   isFavorite: boolean;
   isCompleted: boolean;
 };
 
-export type Task = TaskProp & {
+export type Task = SimpleTask & {
   id: string;
   userID: string;
 };
@@ -40,7 +40,7 @@ const tasksSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    addNewTask(state, action: PayloadAction<TaskProp>) {
+    addNewTask(state, action: PayloadAction<SimpleTask>) {
       state._tasks.push({
         id: generateUniqueId(),
         userID: getCurrentUserLS(),
@@ -55,7 +55,7 @@ const tasksSlice = createSlice({
       action: PayloadAction<{
         id: string;
         change: {
-          prop: keyof TaskProp;
+          prop: keyof SimpleTask;
           value: string | boolean;
         };
       }>
@@ -68,7 +68,7 @@ const tasksSlice = createSlice({
 
       if (task) {
         // eslint-disable-next-line no-unused-vars
-        (task as { [_ in keyof TaskProp]: string | boolean })[prop] = value; // Same as: task[prop] = value;
+        (task as { [_ in keyof SimpleTask]: string | boolean })[prop] = value; // Same as: task[prop] = value;
 
         updateTasksStorage(state._tasks);
       }

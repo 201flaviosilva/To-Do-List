@@ -1,8 +1,7 @@
 import { GoHome } from "react-icons/go";
 import { Link, useLocation } from "react-router-dom";
 import { PAGES } from "../../types/enums";
-import { Search } from "./components/Search";
-import { UserHomePageIcon } from "./components/UserHomePageIcon";
+import { Search, UserHomePageIcon } from "./components";
 import { StyledHeader } from "./styled";
 
 export default function Header() {

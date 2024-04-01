@@ -1,31 +1,17 @@
 import { useState } from "react";
-import { GoCheck, GoTrashcan, GoAlert, GoDash } from "react-icons/go";
-import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
-import type { TaskProp, Task as TaskType } from "../../actions/tasks";
-import { changeIndividualProp, removeTask } from "../../actions/tasks";
-import { useAppDispatch } from "../../app/hooks";
+import type { TaskProps } from "./types";
+import { useChangeProp, useDeleteTask } from "./hooks";
+import { CompletedIcon, DeleteIcon, FavoriteIcon } from "./Icons";
 import { Button, Div, Wrapper } from "./styled";
 
-const ICON_SIZE = 18;
-
-export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
+export default function Task({ id, title, isFavorite, isCompleted }: TaskProps) {
 	const [isHouver, setIsHouver] = useState(false);
-	const dispatch = useAppDispatch();
-
-	function changeProp(id: string, prop: keyof TaskProp, value: string | boolean) {
-		dispatch(changeIndividualProp({
-			id,
-			change: { prop, value, }
-		}));
-	}
+	const { changeProp } = useChangeProp();
+	const { deleteTask } = useDeleteTask();
 
 	function handleChangeTitleDoubleClick() {
 		const newTitle = prompt("New task title", title) || title;
 		if (newTitle !== title) changeProp(id, "title", newTitle);
-	}
-
-	function handleDeleteClick() {
-		dispatch(removeTask({ id }));
 	}
 
 	return (
@@ -49,7 +35,7 @@ export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
 				<Button
 					title="Delete task"
 					isActive={isHouver}
-					onClick={handleDeleteClick}
+					onClick={() => deleteTask(id)}
 					onMouseEnter={() => setIsHouver(true)}
 					onMouseLeave={() => setIsHouver(false)}
 				><DeleteIcon isHouver={isHouver} /></Button>
@@ -58,14 +44,4 @@ export default function Task({ id, title, isFavorite, isCompleted }: TaskType) {
 	);
 }
 
-function CompletedIcon({ isCompleted }: { isCompleted: boolean }) {
-	return isCompleted ? <GoCheck size={ICON_SIZE} /> : <GoDash size={ICON_SIZE} />;
-}
-
-function FavoriteIcon({ isFavorite }: { isFavorite: boolean }) {
-	return isFavorite ? <MdFavorite size={ICON_SIZE} /> : <MdOutlineFavoriteBorder size={ICON_SIZE} />;
-}
-
-function DeleteIcon({ isHouver }: { isHouver: boolean }) {
-	return isHouver ? <GoAlert size={ICON_SIZE} /> : <GoTrashcan size={ICON_SIZE} />;
-}
+Task.displayName = "Task";

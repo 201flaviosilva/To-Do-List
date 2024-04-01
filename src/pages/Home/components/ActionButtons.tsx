@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GiNuclearBomb } from "react-icons/gi";
-import { GoChevronDown, GoChevronUp, GoChecklist } from "react-icons/go";
+import { GoChecklist, GoChevronDown, GoChevronUp } from "react-icons/go";
 import { HiDocumentDuplicate } from "react-icons/hi";
 import { removeAllTasks, removeCompletedTasks, removeDuplicatedTasks } from "../../../actions/tasks";
 import { useAppDispatch } from "../../../app/hooks";
@@ -40,7 +40,7 @@ export default function ActionButtons() {
 }
 
 
-function SectionDelete() {
+export function SectionDelete() {
 	const dispatch = useAppDispatch();
 
 	function handleClickDuplicated() {

@@ -13,4 +13,7 @@ export default defineConfig({
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx"],
   },
+  server: {
+    port: 3210,
+  },
 });
