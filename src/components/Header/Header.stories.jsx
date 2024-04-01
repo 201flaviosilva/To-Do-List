@@ -5,7 +5,7 @@ export default {
 	title: "Components / Header",
 	component: Header,
 	tags: ["autodocs"],
-	decorators: [withPadding,],
+	decorators: [withPadding],
 };
 
 export const Default = {};

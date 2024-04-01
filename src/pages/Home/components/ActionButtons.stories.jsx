@@ -5,15 +5,10 @@ export default {
 	subcomponents: { SectionDelete },
 	tags: ["autodocs"],
 	component: ActionButtons,
-	decorators: [],
 };
 
 export const FullComponent = {};
 
 export const OnlySectionDelete = () => {
-	return (
-		<>
-			<SectionDelete />
-		</>
-	);
+	return <SectionDelete />;
 };

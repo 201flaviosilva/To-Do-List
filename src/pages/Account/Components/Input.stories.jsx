@@ -4,14 +4,12 @@ import { Input } from ".";
 export default {
 	title: "Pages / Account / Input",
 	component: Input,
-	decorators: [],
 };
 
 export const Default = (args) => {
-
 	const [state, setState] = useState({ name: "", username: "", password: "" });
 
-	console.log(state);
+	console.info(state);
 
 	return (
 		<Input

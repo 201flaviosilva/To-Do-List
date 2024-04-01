@@ -13,12 +13,6 @@ export default defineConfig({
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx"],
   },
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: "./src/setupTests.js",
-    css: true,
-  },
   server: {
     port: 3210,
   },

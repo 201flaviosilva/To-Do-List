@@ -7,9 +7,6 @@ import { StyledHeader } from "./styled";
 export default function Header() {
 	const localization = useLocation();
 
-	console.log(localization.pathname);
-
-
 	return (
 		<StyledHeader>
 			<h1>To Do List</h1>

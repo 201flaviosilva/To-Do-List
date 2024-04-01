@@ -5,7 +5,7 @@ export default {
 	title: "Components / Task",
 	component: Task,
 	tags: ["autodocs"],
-	decorators: [withPadding,],
+	decorators: [withPadding],
 };
 
 export const Default = {
