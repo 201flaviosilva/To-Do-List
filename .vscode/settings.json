@@ -1,4 +1,9 @@
 {
+  "search.exclude": {
+    "**/*.d.ts": true,
+    "**/dist/**": true,
+    "**/node_modules/**": true
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.sortMembers": "explicit",
@@ -13,45 +18,15 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "diffEditor.ignoreTrimWhitespace": false,
-  "editor.accessibilitySupport": "off",
-  "editor.bracketPairColorization.enabled": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "editor.inlineSuggest.enabled": true,
-  "editor.insertSpaces": false,
-  "editor.renderControlCharacters": true,
-  "editor.suggest.shareSuggestSelections": true,
-  "editor.suggestSelection": "first",
-  "editor.tabSize": 4,
-  "editor.wordWrap": "on",
-  "explorer.sortOrderLexicographicOptions": "upper",
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 180000,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
   "files.insertFinalNewline": true,
-  "git.autofetch": true,
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "cSpell.words": ["reduxjs", "storysource"]
 }
