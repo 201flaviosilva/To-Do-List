@@ -1,3 +1,4 @@
+import path from "path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import eslint from "vite-plugin-eslint";
@@ -12,6 +13,9 @@ export default defineConfig({
   },
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx"],
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
   },
   server: {
     port: 3210,

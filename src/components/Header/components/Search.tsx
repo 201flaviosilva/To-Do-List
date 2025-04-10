@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { GoSearch } from "react-icons/go";
-import { changeSearchValue } from "../../../actions/tasks";
-import { useAppDispatch } from "../../../app/hooks";
+
+import { useTasksStore } from "@/store";
+
 import { Input, SearchWrapper } from "../styled";
 
 export default function Search() {
-	const dispatch = useAppDispatch();
-
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
 	const [searchTask, setSearchTask] = useState("");
+
+	const setSearchValue = useTasksStore(state => state.setSearchValue);
 
 	const handleSearchIconClick = useCallback(() => {
 		setIsSearchOpen(true);
@@ -17,8 +18,8 @@ export default function Search() {
 	}, [inputRef]);
 
 	useEffect(() => {
-		dispatch(changeSearchValue({ value: searchTask }));
-	}, [dispatch, searchTask]);
+		setSearchValue(searchTask);
+	}, [setSearchValue, searchTask]);
 
 	return (
 		<SearchWrapper>

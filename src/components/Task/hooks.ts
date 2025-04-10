@@ -1,14 +1,15 @@
 import { useCallback } from "react";
-import type { SimpleTask } from "../../actions/tasks";
-import { changeIndividualProp, removeTask } from "../../actions/tasks";
-import { useAppDispatch } from "../../app/hooks";
+
+import { SimpleTask, useTasksStore } from "@/store";
 
 /**
  * Hook to change an individual property of a task.
  * @returns {Object} An object containing the `changeProp` function.
  */
 export function useChangeProp() {
-  const dispatch = useAppDispatch();
+  const changeIndividualProp = useTasksStore(
+    (state) => state.changeIndividualProp
+  );
 
   /**
    * Change an individual property of a task.
@@ -18,14 +19,12 @@ export function useChangeProp() {
    */
   const changeProp = useCallback(
     (id: string, prop: keyof SimpleTask, value: string | boolean) => {
-      dispatch(
-        changeIndividualProp({
-          id,
-          change: { prop, value },
-        })
-      );
+      changeIndividualProp({
+        id,
+        change: { prop, value },
+      });
     },
-    [dispatch]
+    [changeIndividualProp]
   );
 
   return { changeProp };
@@ -36,7 +35,7 @@ export function useChangeProp() {
  * @returns {Object} An object containing the `deleteTask` function.
  */
 export function useDeleteTask() {
-  const dispatch = useAppDispatch();
+  const removeTask = useTasksStore((state) => state.removeTask);
 
   /**
    * Delete a task.
@@ -44,9 +43,9 @@ export function useDeleteTask() {
    */
   const deleteTask = useCallback(
     (id: string) => {
-      dispatch(removeTask({ id }));
+      removeTask(id);
     },
-    [dispatch]
+    [removeTask]
   );
 
   return { deleteTask };

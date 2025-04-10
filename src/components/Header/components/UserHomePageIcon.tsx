@@ -1,29 +1,33 @@
-import { useState, useCallback } from "react";
-import { GoPerson, GoSignOut, GoSignIn } from "react-icons/go";
-import { useSelector } from "react-redux";
+import { useCallback, useState } from "react";
+import { GoPerson, GoSignIn, GoSignOut } from "react-icons/go";
 import { Link } from "react-router-dom";
-import { User, logOut, getCurrentUserData } from "../../../actions/users";
-import { useAppDispatch } from "../../../app/hooks";
-import { PAGES, DEFAULT_USERS_IDS } from "../../../types/enums";
+
+import type { UsersStateStore } from "@/store";
+import { useUsersStore } from "@/store";
+import { DEFAULT_USERS_IDS, PAGES } from "@/types/enums";
+
 import { IconWrapper } from "../styled";
 
 export default function UserHomePageIcon() {
-	const currentUser: User | undefined = useSelector(getCurrentUserData);
 	const [isHouver, setIsHouver] = useState(false);
-	const dispatch = useAppDispatch();
+
+	const getUserData = useUsersStore((state: UsersStateStore) => state.getUserData);
+	const logOut = useUsersStore((state: UsersStateStore) => state.logOut);
+
+	const currentUser = getUserData();
 
 	const Icon = useCallback((props: { size: number }) => {
 		if (isHouver && currentUser) {
 			if (currentUser.id !== DEFAULT_USERS_IDS.GUEST)
 				return <GoSignOut
-					onClick={() => dispatch(logOut())}
+					onClick={logOut}
 					title="Log Out"
 					{...props}
 				/>;
 
 			else return <GoSignIn title="Log In" {...props} />;
 		} else return <GoPerson {...props} />;
-	}, [currentUser, dispatch, isHouver]);
+	}, [currentUser, logOut, isHouver]);
 
 	return (
 		<Link

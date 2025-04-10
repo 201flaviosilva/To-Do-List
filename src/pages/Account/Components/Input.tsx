@@ -1,10 +1,10 @@
-import type { UserProp } from "../../../actions/users";
+import { SimpleUser } from "@/store";
 
-type InputProps = {
+export type InputProps = {
 	label: string;
-	property: keyof UserProp;
-	state: UserProp;
-	setState: React.Dispatch<React.SetStateAction<UserProp>>;
+	property: keyof SimpleUser;
+	state: SimpleUser;
+	setState: React.Dispatch<React.SetStateAction<SimpleUser>>;
 	title?: string;
 	placeholder?: string;
 	type?: string;
@@ -18,7 +18,7 @@ export default function Input({ label, property, state, setState, ...othersProps
 			<input
 				value={state[property]}
 				onChange={(e) =>
-					setState((prev) => ({ ...prev, [property]: e.target.value }))
+					setState((prev: SimpleUser) => ({ ...prev, [property]: e.target.value }))
 				}
 				{...othersProps}
 			/>

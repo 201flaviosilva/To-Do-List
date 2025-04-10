@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import type { Task as TaskType } from "../../../actions/tasks";
-import { selectCurrentUserTasks } from "../../../actions/tasks";
-import { useAppSelector } from "../../../app/hooks";
-import Task from "../../../components/Task";
+
+import Task from "@/components/Task";
+import { Task as TaskType, useTasksStore } from "@/store";
+
 import { EmptyText, StyledList } from "../styled";
 
 export default function TasksList() {
-	const tasks = useSelector(selectCurrentUserTasks);
-	const searchValue: string = useAppSelector((state) => state.tasks.searchValue);
-	const [filteredTasks, setFilteredTasks] = useState(tasks);
+	const tasks = useTasksStore(store => store.tasks);
+	const searchValue = useTasksStore(store => store.searchValue);
+
+	const [filteredTasks, setFilteredTasks] = useState<TaskType[]>(tasks);
 
 	useEffect(() => {
 		// Filter By Search

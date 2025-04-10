@@ -58,6 +58,7 @@ cd To-Do-List
 To install the node dependencies, you need to have [node and npm](https://nodejs.org) installed in you machine.
 
 ```sh
+nvm use
 npm i
 ```
 

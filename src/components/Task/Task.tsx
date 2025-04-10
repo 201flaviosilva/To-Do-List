@@ -1,8 +1,9 @@
 import { useState } from "react";
-import type { TaskProps } from "./types";
+
 import { useChangeProp, useDeleteTask } from "./hooks";
 import { CompletedIcon, DeleteIcon, FavoriteIcon } from "./Icons";
 import { Button, Div, Wrapper } from "./styled";
+import type { TaskProps } from "./types";
 
 export default function Task({ id, title, isFavorite, isCompleted }: TaskProps) {
 	const [isHouver, setIsHouver] = useState(false);

@@ -1,4 +1,5 @@
 import { AiFillGithub } from "react-icons/ai";
+
 import { StyledFooter } from "./styled";
 
 export default function Footer() {

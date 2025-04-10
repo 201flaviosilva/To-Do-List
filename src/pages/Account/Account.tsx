@@ -1,20 +1,24 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import type { UserProp } from "../../actions/users";
-import { clearStatus, createUser, login } from "../../actions/users";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { PAGES } from "../../types/enums";
+
+import type { SimpleUser, UsersStateStore } from "@/store";
+import { useUsersStore } from "@/store";
+import { PAGES } from "@/types/enums";
+
 import { Input } from "./Components";
 import { HTTPCodesMessage } from "./HTTPCodesMessage";
 import { Form, FormsContainer, Wrapper } from "./styled";
 
 export default function Account() {
 	const navigate = useNavigate();
-	const [state, setState] = useState({ name: "", username: "", password: "" } as UserProp);
+	const [user, setUser] = useState({ name: "", username: "", password: "" } as SimpleUser);
 
-	const status: string | null = useAppSelector((state) => state.users.status);
-	const dispatch = useAppDispatch();
+	const status = useUsersStore((state: UsersStateStore) => state.status);
+
+	const createUser = useUsersStore((state: UsersStateStore) => state.create);
+	const login = useUsersStore((state: UsersStateStore) => state.login);
+	const clearStatus = useUsersStore((state: UsersStateStore) => state.clearStatus);
 
 	useEffect(() => {
 		if (status) {
@@ -28,18 +32,18 @@ export default function Account() {
 			});
 		}
 
-		return () => { dispatch(clearStatus()); };
-	}, [dispatch, navigate, status]);
+		return clearStatus;
+	}, [clearStatus, navigate, status]);
 
 	const onSubmitLogin = useCallback((event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		dispatch(login({ ...state }));
-	}, [dispatch, state]);
+		login(user);
+	}, [login, user]);
 
 	const onSubmitSingUp = useCallback((event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		dispatch(createUser({ ...state }));
-	}, [dispatch, state]);
+		createUser({ ...user });
+	}, [createUser, user]);
 
 	return (
 		<Wrapper>
@@ -53,8 +57,8 @@ export default function Account() {
 						title="Username"
 						placeholder="Username"
 						property="username"
-						state={state}
-						setState={setState}
+						state={user}
+						setState={setUser}
 					/>
 
 					<Input
@@ -63,8 +67,8 @@ export default function Account() {
 						title="Password"
 						placeholder="Password"
 						property="password"
-						state={state}
-						setState={setState}
+						state={user}
+						setState={setUser}
 					/>
 
 					<button>Login</button>
@@ -78,8 +82,8 @@ export default function Account() {
 						title="User Name"
 						placeholder="Name"
 						property="name"
-						state={state}
-						setState={setState}
+						state={user}
+						setState={setUser}
 					/>
 
 					<Input
@@ -87,8 +91,8 @@ export default function Account() {
 						title="Username"
 						placeholder="Username"
 						property="username"
-						state={state}
-						setState={setState}
+						state={user}
+						setState={setUser}
 					/>
 
 					<Input
@@ -97,8 +101,8 @@ export default function Account() {
 						title="Password"
 						placeholder="Password"
 						property="password"
-						state={state}
-						setState={setState}
+						state={user}
+						setState={setUser}
 					/>
 
 					<button>Create</button>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { BaseColors } from "../../types";
+
 import { CompletedIcon, DeleteIcon, FavoriteIcon } from "./Icons";
+import { BaseColors } from "../../types";
 
 export default {
 	title: "Components / Task / Icons",

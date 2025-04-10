@@ -1,5 +1,5 @@
-import { withPadding } from "../../stories/withPadding";
 import Task from ".";
+import { withPadding } from "../../stories/withPadding";
 
 export default {
 	title: "Components / Task",

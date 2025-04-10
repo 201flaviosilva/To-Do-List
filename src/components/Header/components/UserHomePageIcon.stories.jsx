@@ -1,5 +1,5 @@
-import { withPadding } from "../../../stories/withPadding";
 import UserHomePageIcon from "./UserHomePageIcon";
+import { withPadding } from "../../../stories/withPadding";
 
 export default {
 	title: "Components / Header / UserHomePageIcon",

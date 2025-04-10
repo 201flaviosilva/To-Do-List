@@ -1,4 +1,4 @@
-import type { SimpleTask } from "../../actions/tasks";
+import { SimpleTask } from "@/store";
 
 export type TaskProps = SimpleTask & {
   id: string;

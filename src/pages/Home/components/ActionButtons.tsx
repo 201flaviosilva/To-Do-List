@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { GiNuclearBomb } from "react-icons/gi";
 import { GoChecklist, GoChevronDown, GoChevronUp } from "react-icons/go";
 import { HiDocumentDuplicate } from "react-icons/hi";
-import { removeAllTasks, removeCompletedTasks, removeDuplicatedTasks } from "../../../actions/tasks";
-import { useAppDispatch } from "../../../app/hooks";
+
+import { useTasksStore } from "@/store";
+
 import { ActionsButtonsStyles as Styles } from "../styled";
 
 const ICON_SIZE = 24;
@@ -41,27 +42,17 @@ export default function ActionButtons() {
 
 
 export function SectionDelete() {
-	const dispatch = useAppDispatch();
-
-	function handleClickDuplicated() {
-		dispatch(removeDuplicatedTasks());
-	}
-
-	function handleClickCompleted() {
-		dispatch(removeCompletedTasks());
-	}
-
-	function handleClickRemoveAll() {
-		dispatch(removeAllTasks());
-	}
+	const removeAllTasks = useTasksStore(store => store.removeAllTasks);
+	const removeCompletedTasks = useTasksStore(store => store.removeCompletedTasks);
+	const removeDuplicatedTasks = useTasksStore(store => store.removeDuplicatedTasks);
 
 	return (
 		<Styles.Section color="danger">
 			<Styles.SectionTitle>Delete</Styles.SectionTitle>
 			<Styles.ButtonsGroup>
-				<Styles.Button title="Remove All Repeated Tasks" onClick={handleClickDuplicated}><HiDocumentDuplicate size={ICON_SIZE} /></Styles.Button>
-				<Styles.Button title="Remove All Completed Tasks" onClick={handleClickCompleted}><GoChecklist size={ICON_SIZE} /></Styles.Button>
-				<Styles.Button title="Remove All Tasks" onClick={handleClickRemoveAll}><GiNuclearBomb size={ICON_SIZE} /></Styles.Button>
+				<Styles.Button title="Remove All Repeated Tasks" onClick={removeDuplicatedTasks}><HiDocumentDuplicate size={ICON_SIZE} /></Styles.Button>
+				<Styles.Button title="Remove All Completed Tasks" onClick={removeCompletedTasks}><GoChecklist size={ICON_SIZE} /></Styles.Button>
+				<Styles.Button title="Remove All Tasks" onClick={removeAllTasks}><GiNuclearBomb size={ICON_SIZE} /></Styles.Button>
 			</Styles.ButtonsGroup>
 		</Styles.Section>
 	);

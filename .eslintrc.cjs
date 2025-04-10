@@ -13,8 +13,8 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ["react", "@typescript-eslint", "eslint-plugin-react", "styled-components-a11y", "jest", "jest-extended"],
-  extends: ["eslint:recommended", "plugin:import/recommended", "plugin:jsx-a11y/recommended", "plugin:@typescript-eslint/recommended", "react-app", "plugin:react/recommended", "plugin:react-hooks/recommended", "plugin:styled-components-a11y/recommended", "plugin:jest/recommended", "plugin:jest-extended/recommended", "plugin:storybook/recommended"],
+  plugins: ["react", "import", "@typescript-eslint", "eslint-plugin-react", "styled-components-a11y"],
+  extends: ["eslint:recommended", "plugin:import/recommended", "plugin:jsx-a11y/recommended", "plugin:@typescript-eslint/recommended", "react-app", "plugin:react/recommended", "plugin:react-hooks/recommended", "plugin:styled-components-a11y/recommended", "plugin:storybook/recommended"],
   rules: {
     "react/jsx-uses-react": "error",
     "react/react-in-jsx-scope": "off",
@@ -33,13 +33,38 @@ module.exports = {
     "import/no-unresolved": ["error", {
       "ignore": ["^[^.]"]
     }],
-    "import/order": ["warn", {
-      groups: ["builtin", "external", "object", "type", "internal", "parent", "sibling", "index"],
-      alphabetize: {
-        "order": "asc",
-        "caseInsensitive": true
-      }
-    }]
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+        ignoreRestSiblings: true,
+      },
+    ],
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          "builtin",       // ex: fs, path
+          "external",      // ex: react, zustand
+          "internal",      // ex: @/utils, @/store
+          ["parent", "sibling", "index"], // ./utils, ../myFile
+        ],
+        "pathGroups": [
+          {
+            pattern: "@/**",
+            group: "internal",
+          },
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          order: "asc",
+          caseInsensitive: true,
+        },
+        "newlines-between": "always",
+      },
+    ],
   },
   settings: {
     react: {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { BaseColors } from "../../types";
 import { BaseColorsNames } from "../../types/customTypes";
 
