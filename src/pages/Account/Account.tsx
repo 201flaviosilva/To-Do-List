@@ -10,104 +10,116 @@ import { Input } from "./Components";
 import { HTTPCodesMessage } from "./HTTPCodesMessage";
 import { Form, FormsContainer, Wrapper } from "./styled";
 
-export default function Account() {
-	const navigate = useNavigate();
-	const [user, setUser] = useState({ name: "", username: "", password: "" } as SimpleUser);
+export function Account() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    name: "",
+    username: "",
+    password: "",
+  } as SimpleUser);
 
-	const status = useUsersStore((state: UsersStateStore) => state.status);
+  const status = useUsersStore((state: UsersStateStore) => state.status);
 
-	const createUser = useUsersStore((state: UsersStateStore) => state.create);
-	const login = useUsersStore((state: UsersStateStore) => state.login);
-	const clearStatus = useUsersStore((state: UsersStateStore) => state.clearStatus);
+  const createUser = useUsersStore((state: UsersStateStore) => state.create);
+  const login = useUsersStore((state: UsersStateStore) => state.login);
+  const clearStatus = useUsersStore(
+    (state: UsersStateStore) => state.clearStatus
+  );
 
-	useEffect(() => {
-		if (status) {
-			const output = HTTPCodesMessage(status);
-			Swal.fire({
-				icon: output?.type,
-				title: output?.title,
-				text: output?.message,
-			}).then(() => {
-				if (status === "200") navigate(PAGES.HOME);
-			});
-		}
+  useEffect(() => {
+    if (status) {
+      const output = HTTPCodesMessage(status);
+      Swal.fire({
+        icon: output?.type,
+        title: output?.title,
+        text: output?.message,
+      }).then(() => {
+        if (status === "200") navigate(PAGES.HOME);
+      });
+    }
 
-		return clearStatus;
-	}, [clearStatus, navigate, status]);
+    return clearStatus;
+  }, [clearStatus, navigate, status]);
 
-	const onSubmitLogin = useCallback((event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		login(user);
-	}, [login, user]);
+  const onSubmitLogin = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      login(user);
+    },
+    [login, user]
+  );
 
-	const onSubmitSingUp = useCallback((event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		createUser({ ...user });
-	}, [createUser, user]);
+  const onSubmitSingUp = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      createUser({ ...user });
+    },
+    [createUser, user]
+  );
 
-	return (
-		<Wrapper>
-			<h2>Account</h2>
-			<FormsContainer>
-				<Form onSubmit={onSubmitLogin}>
-					<h3>Login</h3>
+  return (
+    <Wrapper>
+      <h2>Account</h2>
+      <FormsContainer>
+        <Form onSubmit={onSubmitLogin}>
+          <h3>Login</h3>
 
-					<Input
-						label="Username"
-						title="Username"
-						placeholder="Username"
-						property="username"
-						state={user}
-						setState={setUser}
-					/>
+          <Input
+            label="Username"
+            title="Username"
+            placeholder="Username"
+            property="username"
+            state={user}
+            setState={setUser}
+          />
 
-					<Input
-						type="password"
-						label="Password"
-						title="Password"
-						placeholder="Password"
-						property="password"
-						state={user}
-						setState={setUser}
-					/>
+          <Input
+            type="password"
+            label="Password"
+            title="Password"
+            placeholder="Password"
+            property="password"
+            state={user}
+            setState={setUser}
+          />
 
-					<button>Login</button>
-				</Form>
+          <button>Login</button>
+        </Form>
 
-				<Form onSubmit={onSubmitSingUp}>
-					<h3>Sign Up</h3>
+        <Form onSubmit={onSubmitSingUp}>
+          <h3>Sign Up</h3>
 
-					<Input
-						label="User Name"
-						title="User Name"
-						placeholder="Name"
-						property="name"
-						state={user}
-						setState={setUser}
-					/>
+          <Input
+            label="User Name"
+            title="User Name"
+            placeholder="Name"
+            property="name"
+            state={user}
+            setState={setUser}
+          />
 
-					<Input
-						label="Username"
-						title="Username"
-						placeholder="Username"
-						property="username"
-						state={user}
-						setState={setUser}
-					/>
+          <Input
+            label="Username"
+            title="Username"
+            placeholder="Username"
+            property="username"
+            state={user}
+            setState={setUser}
+          />
 
-					<Input
-						type="password"
-						label="Password"
-						title="Password"
-						placeholder="Password"
-						property="password"
-						state={user}
-						setState={setUser}
-					/>
+          <Input
+            type="password"
+            label="Password"
+            title="Password"
+            placeholder="Password"
+            property="password"
+            state={user}
+            setState={setUser}
+          />
 
-					<button>Create</button>
-				</Form>
-			</FormsContainer>
-		</Wrapper>
-	);
+          <button>Create</button>
+        </Form>
+      </FormsContainer>
+    </Wrapper>
+  );
 }

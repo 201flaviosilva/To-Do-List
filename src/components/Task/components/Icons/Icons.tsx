@@ -1,4 +1,4 @@
-import { GoCheck, GoTrash, GoAlert, GoDash } from "react-icons/go";
+import { GoAlert, GoCheck, GoDash, GoTrash } from "react-icons/go";
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 
 const ICON_SIZE = 18;

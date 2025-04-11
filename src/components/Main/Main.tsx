@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 
 import { StyledMain } from "./styled";
 
-type MainProps = {
-	children: ReactNode
+export type MainProps = {
+  children: ReactNode;
 };
 
-export default function Main({ children }: MainProps) {
-	return <StyledMain>{children}</StyledMain>;
+export function Main({ children }: MainProps) {
+  return <StyledMain>{children}</StyledMain>;
 }

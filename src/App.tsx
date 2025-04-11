@@ -1,12 +1,8 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import Main from "@/components/Main";
-import Account from "@/pages/Account";
-import Home from "@/pages/Home";
-import NotFound from "@/pages/NotFound";
 import { PAGES } from "@/types/enums";
+import { Footer, Header, Main } from "./components";
+import { Account, Home, NotFound } from "./pages";
 
 export default function App() {
   return (
@@ -23,6 +19,3 @@ export default function App() {
     </HashRouter>
   );
 }
-
-
-

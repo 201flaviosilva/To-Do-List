@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import { BaseColors } from "../../types";
-import { BaseColorsNames } from "../../types/customTypes";
+import { BaseColors, BaseColorsNames } from "@/types";
 
 export const Wrapper = styled.div`
   max-height: 100%;
