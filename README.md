@@ -76,6 +76,9 @@ Check the components documentation:
 ```sh
 npm run storybook
 ```
+### Additional Analysis
+
+After reviewing the issue, I believe adding Unity tests would improve the project's stability and reliability. Automated tests would help developers quickly identify bugs when changes are made and ensure that core features continue to work as expected. This enhancement would make the project easier to maintain and increase confidence in future updates.
 
 ## Available Commands
 
