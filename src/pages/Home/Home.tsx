@@ -31,6 +31,7 @@ export function Home() {
       <CreateTask.Form onSubmit={onSubmit}>
         <CreateTask.Input
           placeholder="Enter a New Task"
+          autoFocus
           maxLength={50}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
